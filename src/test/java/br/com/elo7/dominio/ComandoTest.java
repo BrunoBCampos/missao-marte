@@ -13,7 +13,7 @@ public class ComandoTest {
 	
 	@Test
 	public void deveRetornarNullComEntradaInvalida() {
-		Assert.assertNull( Comando.get("J"));
+		Assert.assertNull(Comando.get("J"));
 	}
 
 }

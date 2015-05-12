@@ -9,8 +9,8 @@ public class Posicao {
 	private final Direcao direcao;
 	
 	private Posicao(int x, int y, Direcao direcao) {
-		this.x = x;
-		this.y = y;
+		this.x = x > Area.getLimiteX() ? 1 : x;
+		this.y = y > Area.getLimiteY() ? 1 : y;
 		this.direcao = direcao;
 	}
 
