@@ -4,7 +4,7 @@ public enum Comando {
 	
 	DIREITA("R"),
 	ESQUERDA("L"),
-	MOVER("M");
+	ANDAR("M");
 	
 	private String valor;
 	

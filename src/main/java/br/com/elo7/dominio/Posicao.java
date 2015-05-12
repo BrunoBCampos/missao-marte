@@ -30,4 +30,21 @@ public class Posicao {
 		return new Posicao(x, y, direcao);
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((direcao == null) ? 0 : direcao.hashCode());
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || getClass() != o.getClass()) return false;
+		Posicao outra = (Posicao) o;
+		return x == outra.getX() && y == outra.getY() && direcao.equals(outra.getDirecao());
+	}
+	
 }
