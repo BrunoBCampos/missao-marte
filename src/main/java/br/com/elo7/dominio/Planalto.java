@@ -1,6 +1,6 @@
 package br.com.elo7.dominio;
 
-public class Area {
+public class Planalto {
 	
 	private static int limiteX;
 	private static int limiteY;
@@ -13,7 +13,7 @@ public class Area {
 		return limiteY;
 	}
 	
-	private Area() { }
+	private Planalto() { }
 	
 	public static void build(int x, int y) {
 		limiteX = x;
