@@ -22,8 +22,8 @@ public class Planalto {
 	
 	public static void build(String value) {
 		if (!value.matches("\\d{2}")) throw new IllegalArgumentException();
-		String[] split = value.split("");
-		build(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
+		String[] array = value.split("");
+		build(Integer.parseInt(array[0]), Integer.parseInt(array[1]));
 	}
 
 }
