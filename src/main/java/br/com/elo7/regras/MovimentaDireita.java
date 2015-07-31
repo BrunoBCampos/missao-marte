@@ -1,8 +1,8 @@
 package br.com.elo7.regras;
 
 import br.com.elo7.dominio.Bussola;
-import br.com.elo7.dominio.Bussola.Direcao;
 import br.com.elo7.dominio.Comando;
+import br.com.elo7.dominio.Direcao;
 import br.com.elo7.dominio.Posicao;
 
 public class MovimentaDireita extends RegraMovimentacao {

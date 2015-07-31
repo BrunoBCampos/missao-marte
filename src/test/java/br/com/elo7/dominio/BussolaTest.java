@@ -4,8 +4,6 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import br.com.elo7.dominio.Bussola.Direcao;
-
 public class BussolaTest {
 	
 	@Test

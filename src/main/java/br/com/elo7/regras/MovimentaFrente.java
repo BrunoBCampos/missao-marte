@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import br.com.elo7.dominio.Bussola.Direcao;
 import br.com.elo7.dominio.Comando;
+import br.com.elo7.dominio.Direcao;
 import br.com.elo7.dominio.Posicao;
 
 public class MovimentaFrente extends RegraMovimentacao {
