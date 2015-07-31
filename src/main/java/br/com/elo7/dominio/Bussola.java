@@ -23,10 +23,6 @@ public class Bussola {
 		return navegacao.get(direcao).getEsquerda();
 	}
 	
-	public enum Direcao {
-		NORTE, SUL, LESTE, OESTE;
-	}
-	
 	private static class Vizinho {
 		
 		private Direcao direita;

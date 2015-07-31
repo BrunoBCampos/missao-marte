@@ -1,6 +1,5 @@
 package br.com.elo7.dominio;
 
-import br.com.elo7.dominio.Bussola.Direcao;
 
 public class Posicao {
 	
@@ -28,6 +27,12 @@ public class Posicao {
 
 	public static Posicao criar(int x, int y, Direcao direcao) {
 		return new Posicao(x, y, direcao);
+	}
+	
+	public static void criar(String value) {
+		if(!value.matches("\\d{2}[LRM]")) throw new IllegalArgumentException();
+		String[] array = value.split("");
+		criar(Integer.parseInt(array[0]), Integer.parseInt(array[1]), Direcao.get(array[2]));
 	}
 
 	@Override
