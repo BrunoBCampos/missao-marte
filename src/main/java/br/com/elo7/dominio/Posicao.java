@@ -29,10 +29,10 @@ public class Posicao {
 		return new Posicao(x, y, direcao);
 	}
 	
-	public static void criar(String value) {
+	public static Posicao criar(String value) {
 		if(!value.matches("\\d{2}[LRM]")) throw new IllegalArgumentException();
 		String[] array = value.split("");
-		criar(Integer.parseInt(array[0]), Integer.parseInt(array[1]), Direcao.get(array[2]));
+		return criar(Integer.parseInt(array[0]), Integer.parseInt(array[1]), Direcao.get(array[2]));
 	}
 
 	@Override
