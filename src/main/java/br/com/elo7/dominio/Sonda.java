@@ -1,5 +1,8 @@
 package br.com.elo7.dominio;
 
+import java.util.List;
+
+import br.com.elo7.parser.Parser;
 import br.com.elo7.regras.MovimentaDireita;
 import br.com.elo7.regras.MovimentaEsquerda;
 import br.com.elo7.regras.MovimentaFrente;
@@ -15,6 +18,14 @@ public class Sonda {
 	
 	public void movimenta(Comando comando) {
 		this.posicao = getRegra().movimenta(comando, posicao);
+	}
+	
+	public void movimenta(List<Comando> comandos) {
+		comandos.forEach(comando -> movimenta(comando));
+	}
+	
+	public void movimenta(String input) {
+		movimenta(Parser.parse(input));
 	}
 	
 	private RegraMovimentacao getRegra() {
