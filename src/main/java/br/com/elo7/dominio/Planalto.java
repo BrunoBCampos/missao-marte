@@ -19,5 +19,11 @@ public class Planalto {
 		limiteX = x;
 		limiteY = y;
 	}
+	
+	public static void build(String value) {
+		if (!value.matches("\\d{2}")) throw new IllegalArgumentException();
+		String[] split = value.split("");
+		build(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
+	}
 
 }
