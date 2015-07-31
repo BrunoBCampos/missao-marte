@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.elo7.dominio.Bussola.Direcao;
 import br.com.elo7.regras.MovimentaDireita;
 import br.com.elo7.regras.MovimentaEsquerda;
 import br.com.elo7.regras.MovimentaFrente;
@@ -22,6 +21,7 @@ public class MovimentosTest {
 		direita = new MovimentaDireita();
 		esquerda = new MovimentaEsquerda();
 		mover = new MovimentaFrente();
+		Planalto.build(3, 3);
 	}
 	
 	@Test
