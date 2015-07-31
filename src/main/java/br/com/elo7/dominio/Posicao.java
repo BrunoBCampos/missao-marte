@@ -30,7 +30,7 @@ public class Posicao {
 	}
 	
 	public static Posicao criar(String value) {
-		if(!value.matches("\\d{2}[LRM]")) throw new IllegalArgumentException();
+		if(!value.matches("\\d{2}[NSLO]")) throw new IllegalArgumentException();
 		String[] array = value.split("");
 		return criar(Integer.parseInt(array[0]), Integer.parseInt(array[1]), Direcao.get(array[2]));
 	}
