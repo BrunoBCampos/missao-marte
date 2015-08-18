@@ -48,7 +48,7 @@ public class RepositoryTest {
 		em.detach(sonda);
 		
 		Sonda entidade = em.find(Sonda.class, sonda.getId());
-		assertThat(sonda.getPosicao(), is(equalTo(Posicao.criar(1, 2, Direcao.NORTE))));
+		assertThat(entidade.getPosicao(), is(equalTo(Posicao.criar(1, 2, Direcao.NORTE))));
 	}
 
 }
