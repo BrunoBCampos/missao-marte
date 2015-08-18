@@ -21,7 +21,7 @@ public class MovimentosTest {
 		direita = new MovimentaDireita();
 		esquerda = new MovimentaEsquerda();
 		mover = new MovimentaFrente();
-		Planalto.build(3, 3);
+//		Planalto.build(3, 3);
 	}
 	
 	@Test

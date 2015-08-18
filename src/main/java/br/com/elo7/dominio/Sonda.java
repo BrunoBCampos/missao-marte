@@ -1,6 +1,13 @@
 package br.com.elo7.dominio;
 
+import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import br.com.elo7.parser.Parser;
 import br.com.elo7.regras.MovimentaDireita;
@@ -8,10 +15,21 @@ import br.com.elo7.regras.MovimentaEsquerda;
 import br.com.elo7.regras.MovimentaFrente;
 import br.com.elo7.regras.RegraMovimentacao;
 
-public class Sonda {
-	
-	private Posicao posicao;
+@Entity
+@Table(name="SONDA")
+public class Sonda implements Serializable {
 
+	private static final long serialVersionUID = 3356875690406000800L;
+
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Embedded
+	private Posicao posicao;
+	
+	protected Sonda() { }
+	
 	public Sonda(Posicao posicao) {
 		this.posicao = posicao;
 	}
@@ -46,6 +64,10 @@ public class Sonda {
 
 	public Posicao getPosicao() {
 		return posicao;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 	
 }

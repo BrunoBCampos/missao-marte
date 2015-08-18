@@ -1,15 +1,19 @@
 package br.com.elo7.dominio;
 
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class Posicao {
 	
-	private final int x;
-	private final int y;
-	private final Direcao direcao;
+	private int x;
+	private int y;
+	private Direcao direcao;
+	
+	protected Posicao() { }
 	
 	private Posicao(int x, int y, Direcao direcao) {
-		this.x = x > Planalto.getLimiteX() ? 1 : x;
-		this.y = y > Planalto.getLimiteY() ? 1 : y;
+		this.x = x <= 0 ? 1 : x;
+		this.y = y <= 0 ? 1 : y;
 		this.direcao = direcao;
 	}
 
