@@ -20,7 +20,6 @@ import br.com.elo7.config.Application;
 import br.com.elo7.dominio.Planalto;
 
 import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.response.Response;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -43,7 +42,7 @@ public class PlanaltoRestTest {
 								.body(new Planalto(1, 1))
 								.post("/planalto");
 		
-		Planalto planalto = JsonPath.from(response.asString()).getObject("planalto", Planalto.class);		
+		Planalto planalto = response.jsonPath().getObject("planalto", Planalto.class);		
 		assertThat(planalto, is(notNullValue()));
 		assertThat(planalto.getId(), is(notNullValue()));
 		assertThat(response.getStatusCode(), is(equalTo(HttpStatus.SC_CREATED)));
