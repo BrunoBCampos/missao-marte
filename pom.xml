@@ -10,7 +10,6 @@
 	<name>missao-marte</name>
 	<url>http://maven.apache.org</url>
 
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -57,8 +56,13 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>2.5.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<finalName>missao-marte</finalName>
 		<plugins>

@@ -22,4 +22,9 @@ public class DominioRepository implements Repository {
 		em.merge(o);
 	}
 
+	@Override
+	public <T> T buscar(Class<T> tipo, Long id) {
+		return em.find(tipo, id);
+	}
+
 }
