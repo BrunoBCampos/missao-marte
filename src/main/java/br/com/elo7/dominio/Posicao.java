@@ -36,7 +36,7 @@ public class Posicao {
 	public static Posicao criar(String value) {
 		if(!value.matches("\\d{2}[NSLO]")) throw new IllegalArgumentException();
 		String[] array = value.split("");
-		return criar(Integer.parseInt(array[0]), Integer.parseInt(array[1]), Direcao.get(array[2]));
+		return criar(Integer.parseInt(array[0]), Integer.parseInt(array[1]), Direcao.fromValue(array[2]));
 	}
 
 	@Override

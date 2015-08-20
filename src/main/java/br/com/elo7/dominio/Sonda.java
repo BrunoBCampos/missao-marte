@@ -7,6 +7,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.elo7.parser.Parser;
@@ -27,6 +28,9 @@ public class Sonda implements Serializable {
 	
 	@Embedded
 	private Posicao posicao;
+	
+	@ManyToOne
+	private Planalto planalto;
 	
 	protected Sonda() { }
 	
@@ -68,6 +72,14 @@ public class Sonda implements Serializable {
 	
 	public Long getId() {
 		return id;
+	}
+	
+	public Planalto getPlanalto() {
+		return planalto;
+	}
+	
+	public void setPlanalto(Planalto planalto) {
+		this.planalto = planalto;
 	}
 	
 }

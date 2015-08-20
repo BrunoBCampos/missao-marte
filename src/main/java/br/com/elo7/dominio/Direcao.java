@@ -9,7 +9,7 @@ public enum Direcao {
 		this.valor = valor;
 	}
 	
-	public static Direcao get(String valor) {
+	public static Direcao fromValue(String valor) {
 		for(Direcao direcao : values()) {
 			if (direcao.getValor().equals(valor)) return direcao;
 		}

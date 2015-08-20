@@ -1,10 +1,12 @@
 package br.com.elo7.dominio;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +20,11 @@ public class Planalto implements Serializable {
 	private Long id;
 	
 	private int limiteX;
+	
 	private int limiteY;
+	
+	@OneToMany
+	private List<Sonda> sondas;
 	
 	public Planalto() { }
 	
