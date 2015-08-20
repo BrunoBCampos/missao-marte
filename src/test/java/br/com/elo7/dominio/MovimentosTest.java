@@ -15,13 +15,14 @@ public class MovimentosTest {
 	private static RegraMovimentacao direita;
 	private static RegraMovimentacao esquerda;
 	private static RegraMovimentacao mover;
+	private static Planalto planalto;
 
 	@BeforeClass
 	public static void setUp() {
 		direita = new MovimentaDireita();
 		esquerda = new MovimentaEsquerda();
 		mover = new MovimentaFrente();
-//		Planalto.build(3, 3);
+		planalto = new Planalto(5, 5);
 	}
 	
 	@Test
@@ -29,57 +30,64 @@ public class MovimentosTest {
 		RegraMovimentacao direita = new MovimentaDireita();
 		direita.incluiProximaRegra(new MovimentaEsquerda());
 		direita.incluiProximaRegra(new MovimentaFrente());
-		Posicao posicao = direita.movimenta(Comando.ANDAR, Posicao.criar(2, 3, Direcao.NORTE));
+		Sonda sonda = new Sonda(Posicao.criar(2, 3, Direcao.NORTE), planalto);
+		Posicao posicao = direita.movimenta(Comando.ANDAR, sonda);
 		assertEquals(Posicao.criar(2, 4, Direcao.NORTE), posicao);
 	}
 	
 	@Test
 	public void deveVirarParaDireitaDoLesteEIrParaSul() {
-		Posicao posicao = direita.movimenta(Comando.DIREITA, Posicao.criar(0, 0, Direcao.LESTE));
+		Sonda sonda = new Sonda(Posicao.criar(0, 0, Direcao.LESTE), planalto);
+		Posicao posicao = direita.movimenta(Comando.DIREITA, sonda);
 		assertEquals(Direcao.SUL, posicao.getDirecao());
 	}
 	
 	@Test
 	public void deveVirarParaDireitaDoNorteEIrParaLeste() {
-		Posicao posicao = direita.movimenta(Comando.DIREITA, Posicao.criar(0, 0, Direcao.NORTE));
+		Sonda sonda = new Sonda(Posicao.criar(0, 0, Direcao.NORTE), planalto);
+		Posicao posicao = direita.movimenta(Comando.DIREITA, sonda);
 		assertEquals(Direcao.LESTE, posicao.getDirecao());
 	}
 	
 	@Test
 	public void deveVirarParaEsquerdaDoOesteEIrParaSul() {
-		Posicao posicao = esquerda.movimenta(Comando.ESQUERDA, Posicao.criar(0, 0, Direcao.OESTE));
+		Sonda sonda = new Sonda(Posicao.criar(0, 0, Direcao.OESTE), planalto);
+		Posicao posicao = esquerda.movimenta(Comando.ESQUERDA, sonda);
 		assertEquals(Direcao.SUL, posicao.getDirecao());
 	}
 	
 	@Test
 	public void deveVirarParaEsquerdaDoLesteEIrParaNorte() {
-		Posicao posicao = esquerda.movimenta(Comando.ESQUERDA, Posicao.criar(0, 0, Direcao.LESTE));
+		Sonda sonda = new Sonda(Posicao.criar(0, 0, Direcao.LESTE), planalto);
+		Posicao posicao = esquerda.movimenta(Comando.ESQUERDA, sonda);
 		assertEquals(Direcao.NORTE, posicao.getDirecao());
 	}
 	
 	@Test
 	public void deveMoverParaFrenteAoLeste() {
-		Posicao posicao = mover.movimenta(Comando.ANDAR, Posicao.criar(1, 1, Direcao.LESTE));
+		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.LESTE), planalto);
+		Posicao posicao = mover.movimenta(Comando.ANDAR, sonda);
 		assertEquals(Posicao.criar(2, 1, Direcao.LESTE), posicao);
 	}
 	
 	@Test
 	public void deveMoverParaFrenteAoOeste() {
-		Posicao posicao = mover.movimenta(Comando.ANDAR, Posicao.criar(3, 3, Direcao.OESTE));
+		Sonda sonda = new Sonda(Posicao.criar(3, 3, Direcao.OESTE), planalto);
+		Posicao posicao = mover.movimenta(Comando.ANDAR, sonda);
 		assertEquals(Posicao.criar(2, 3, Direcao.OESTE), posicao);
 	}
 	
 	@Test
 	public void deveMoverParaFrenteAoNorte() {
-		RegraMovimentacao regra = new MovimentaFrente();
-		Posicao posicao = regra.movimenta(Comando.ANDAR, Posicao.criar(4, 2, Direcao.NORTE));
+		Sonda sonda = new Sonda(Posicao.criar(4, 2, Direcao.NORTE), planalto);
+		Posicao posicao = mover.movimenta(Comando.ANDAR, sonda);
 		assertEquals(Posicao.criar(4, 3, Direcao.NORTE), posicao);
 	}
 	
 	@Test
 	public void deveMoverParaFrenteAoSul() {
-		RegraMovimentacao regra = new MovimentaFrente();
-		Posicao posicao = regra.movimenta(Comando.ANDAR, Posicao.criar(5, 2, Direcao.SUL));
+		Sonda sonda = new Sonda(Posicao.criar(5, 2, Direcao.SUL), planalto);
+		Posicao posicao = mover.movimenta(Comando.ANDAR, sonda);
 		assertEquals(Posicao.criar(5, 1, Direcao.SUL), posicao);
 	}
 

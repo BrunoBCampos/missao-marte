@@ -34,12 +34,13 @@ public class Sonda implements Serializable {
 	
 	protected Sonda() { }
 	
-	public Sonda(Posicao posicao) {
+	public Sonda(Posicao posicao, Planalto planalto) {
 		this.posicao = posicao;
+		this.planalto = planalto;
 	}
 	
 	public void movimenta(Comando comando) {
-		this.posicao = getRegra().movimenta(comando, posicao);
+		this.posicao = getRegra().movimenta(comando, this);
 	}
 	
 	public void movimenta(List<Comando> comandos) {

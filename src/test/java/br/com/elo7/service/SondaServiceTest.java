@@ -1,8 +1,10 @@
 package br.com.elo7.service;
 
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 
 import br.com.elo7.banco.Repository;
 import br.com.elo7.dominio.Direcao;
+import br.com.elo7.dominio.Planalto;
 import br.com.elo7.dominio.Posicao;
 import br.com.elo7.dominio.Sonda;
 
@@ -30,7 +33,7 @@ public class SondaServiceTest {
 	
 	@Test
 	public void deveMovimentarASonda() {
-		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE));
+		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE), new Planalto(5,5));
 		when(repository.buscar(Sonda.class, 1L)).thenReturn(sonda);
 		doNothing().when(repository).atualizar(sonda);
 		sonda = sondaService.movimentar(1L, "M");

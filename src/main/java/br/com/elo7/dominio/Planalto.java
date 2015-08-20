@@ -3,6 +3,7 @@ package br.com.elo7.dominio;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,8 +20,10 @@ public class Planalto implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
+	@Column(name="LIMITE_X")
 	private int limiteX;
 	
+	@Column(name="LIMITE_Y")
 	private int limiteY;
 	
 	@OneToMany

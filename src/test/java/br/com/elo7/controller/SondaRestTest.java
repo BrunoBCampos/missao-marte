@@ -42,8 +42,7 @@ public class SondaRestTest {
 	@Test
     public void deveCadastrarUmaSonda() {
 		
-		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE));
-		sonda.setPlanalto(criarPlanalto());
+		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE), criarPlanalto());
 		
 		Response response = given().contentType("application/json")
 								.body(sonda)
@@ -56,8 +55,7 @@ public class SondaRestTest {
 	
 	@Test
 	public void deveMovimentarUmaSonda() {
-		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE));
-		sonda.setPlanalto(criarPlanalto());
+		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE), criarPlanalto());
 		
 		sonda = given().contentType("application/json")
 								.body(sonda)
@@ -77,7 +75,7 @@ public class SondaRestTest {
 	
 	private Planalto criarPlanalto() {
 		return given().contentType("application/json")
-				.body(new Planalto(1, 1))
+				.body(new Planalto(5, 5))
 				.post("/planalto").as(Planalto.class);
 	}
 

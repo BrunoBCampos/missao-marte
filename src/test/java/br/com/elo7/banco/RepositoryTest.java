@@ -1,6 +1,7 @@
 package br.com.elo7.banco;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -40,7 +41,9 @@ public class RepositoryTest {
 	
 	@Test
 	public void deveAtualizarEntidadeNoBancoDeDados() {
-		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE));
+		Planalto planalto = new Planalto(3,4);
+		repository.cadastrar(planalto);
+		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE), planalto);
 		repository.cadastrar(sonda);
 		
 		sonda.movimenta(Comando.ANDAR);

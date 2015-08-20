@@ -1,12 +1,16 @@
 package br.com.elo7.dominio;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Posicao {
 	
+	@Column(name="POSICAO_X")
 	private int x;
+	@Column(name="POSICAO_Y")
 	private int y;
+	@Column(name="DIRECAO")
 	private Direcao direcao;
 	
 	protected Posicao() { }
