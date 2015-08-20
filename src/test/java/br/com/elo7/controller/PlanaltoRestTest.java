@@ -1,8 +1,8 @@
 package br.com.elo7.controller;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -20,6 +20,7 @@ import br.com.elo7.config.Application;
 import br.com.elo7.dominio.Planalto;
 
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.response.Response;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,10 +42,12 @@ public class PlanaltoRestTest {
 		Response response = given().contentType("application/json")
 								.body(new Planalto(1, 1))
 								.post("/planalto");
-		Planalto planalto = response.as(Planalto.class);
+		
+		Planalto planalto = JsonPath.from(response.asString()).getObject("planalto", Planalto.class);		
 		assertThat(planalto, is(notNullValue()));
 		assertThat(planalto.getId(), is(notNullValue()));
 		assertThat(response.getStatusCode(), is(equalTo(HttpStatus.SC_CREATED)));
+		response.then().body("_links.cadastrarSonda.href", is(equalTo("http://localhost:" + port + "/sonda")));
     }
 	
 }
