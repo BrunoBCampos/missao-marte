@@ -47,7 +47,8 @@ public class SondaRestTest {
 		Response response = given().contentType("application/json")
 								.body(sonda)
 								.post("/sonda");
-		Sonda novaSonda = response.as(Sonda.class);
+		
+		Sonda novaSonda = response.jsonPath().getObject("sonda", Sonda.class);
 		assertThat(novaSonda, is(notNullValue()));
 		assertThat(novaSonda.getId(), is(notNullValue()));
 		assertThat(response.getStatusCode(), is(equalTo(HttpStatus.SC_CREATED)));
@@ -60,7 +61,8 @@ public class SondaRestTest {
 		sonda = given().contentType("application/json")
 								.body(sonda)
 								.post("/sonda")
-								.as(Sonda.class);
+								.jsonPath()
+								.getObject("sonda", Sonda.class);
 		
 		sonda = given().contentType("application/json")
 			.pathParam("id", sonda.getId().toString())
@@ -76,7 +78,8 @@ public class SondaRestTest {
 	private Planalto criarPlanalto() {
 		return given().contentType("application/json")
 				.body(new Planalto(5, 5))
-				.post("/planalto").as(Planalto.class);
+				.post("/planalto")
+				.jsonPath().getObject("planalto", Planalto.class);
 	}
 
 }

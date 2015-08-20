@@ -1,6 +1,10 @@
 package br.com.elo7.controller;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +24,12 @@ public class SondaRest {
 	private SondaService sondaService;
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public ResponseEntity<Sonda> cadastrar(@RequestBody Sonda sonda) {
+	public ResponseEntity<br.com.elo7.rest.Sonda> cadastrar(@RequestBody Sonda sonda) {
 		sondaService.cadastrar(sonda);
-		return new ResponseEntity<Sonda>(sonda, HttpStatus.CREATED);
+		br.com.elo7.rest.Sonda recurso = new br.com.elo7.rest.Sonda(sonda);
+		Link relation = linkTo(methodOn(SondaRest.class).movimentar(sonda.getId(), "M")).withRel("movimentarSonda");
+		recurso.add(relation);
+		return new ResponseEntity<br.com.elo7.rest.Sonda>(recurso, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{id}/comando/{comando}", method=RequestMethod.POST)
