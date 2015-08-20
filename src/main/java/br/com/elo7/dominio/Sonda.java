@@ -71,6 +71,10 @@ public class Sonda implements Serializable {
 		return posicao;
 	}
 	
+	public void setPosicao(Posicao posicao) {
+		this.posicao = posicao;
+	}
+	
 	public Long getId() {
 		return id;
 	}

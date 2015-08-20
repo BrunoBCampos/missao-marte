@@ -52,5 +52,23 @@ public class SondaServiceTest {
 		when(repository.buscar(Planalto.class, null)).thenReturn(null);
 		sondaService.cadastrar(sonda);
 	}
+	
+	@Test
+	public void deveCadastarASondaComOsValoresDaPosicaoOriginais() {
+		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE), new Planalto(5,5));
+		when(repository.buscar(Planalto.class, null)).thenReturn(new Planalto(5,5));
+		doNothing().when(repository).cadastrar(sonda);
+		sondaService.cadastrar(sonda);
+		assertThat(sonda.getPosicao(), is(equalTo(Posicao.criar(1, 1, Direcao.NORTE))));
+	}
+	
+	@Test
+	public void deveCadastarASondaComOsValoresDaPosicaoAjustados() {
+		Sonda sonda = new Sonda(Posicao.criar(9, 7, Direcao.NORTE), new Planalto(5,5));
+		when(repository.buscar(Planalto.class, null)).thenReturn(new Planalto(5,5));
+		doNothing().when(repository).cadastrar(sonda);
+		sondaService.cadastrar(sonda);
+		assertThat(sonda.getPosicao(), is(equalTo(Posicao.criar(5, 5, Direcao.NORTE))));
+	}
 
 }
