@@ -16,6 +16,7 @@ public class SondaServiceImpl implements SondaService {
 	@Override
 	public void cadastrar(Sonda sonda) {
 		Planalto planalto = repository.buscar(Planalto.class, sonda.getPlanalto().getId());
+		if (planalto == null) throw new IllegalArgumentException("Id do planalto inexistente");
 		sonda.setPlanalto(planalto);
 		repository.cadastrar(sonda);
 	}
@@ -23,6 +24,7 @@ public class SondaServiceImpl implements SondaService {
 	@Override
 	public Sonda movimentar(Long id, String comandos) {
 		Sonda sonda = repository.buscar(Sonda.class, id);
+		if (sonda == null) throw new IllegalArgumentException("Id da sonda inexistente");
 		sonda.movimenta(comandos);
 		repository.atualizar(sonda);
 		return sonda;

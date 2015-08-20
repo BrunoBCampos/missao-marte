@@ -39,5 +39,18 @@ public class SondaServiceTest {
 		sonda = sondaService.movimentar(1L, "M");
 		assertThat(sonda.getPosicao(), is(equalTo(Posicao.criar(1, 2, Direcao.NORTE))));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void deveLancarExcecaoAoMovimentarSondaSeAMesmaNaoExistir() {
+		when(repository.buscar(Sonda.class, 1L)).thenReturn(null);
+		sondaService.movimentar(1L, "M");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void deveLancarExcecaoAoCadastrarSondaOPlanaltoSeNaoExistir() {
+		Sonda sonda = new Sonda(Posicao.criar(1, 1, Direcao.NORTE), new Planalto(5,5));
+		when(repository.buscar(Planalto.class, null)).thenReturn(null);
+		sondaService.cadastrar(sonda);
+	}
 
 }
